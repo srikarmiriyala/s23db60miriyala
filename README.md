@@ -2,8 +2,8 @@
 # This is my Lab11 repository
 [My render link](https://s23db60miriyala.onrender.com/))
 
-This is Sai Srikar Miriyala
-myclass= vehicle my attributes are
-vehicle_color:(String) 
-vehicle_type:(String) 
+This is Sai Srikar Miriyala <br>
+myclass= vehicle my attributes are <br>
+vehicle_color:(String) <br>
+vehicle_type:(String) <br>
 vehicle_price:(Number)
