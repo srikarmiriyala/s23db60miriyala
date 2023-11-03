@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  h1= title
+  - const results = [{vehicle_type:"commercial",vehicle_color:"red",vehicle_price:35000},{vehicle_type:"public",vehicle_color:"grey",vehicle_price:55000},{vehicle_type:"personal",vehicle_color:"blue",vehicle_price:15000}]
+       
+
+  .container-fluid
+    .row
+      each vehicle,index in results
+        div(class="col-sm-2" onclick=`buy(${index})`)       
+          h3 #{vehicle.vehicle_type}
+          p vehicle Color #{vehicle.vehicle_color}
+          p vehicle price: $#{vehicle.vehicle_price}
+        
+  script.
+    function buy(index) {
+        alert(`You purchased : ${index}`)
+    }
