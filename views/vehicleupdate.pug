@@ -1,0 +1,45 @@
+extends layout
+block content
+  h1= title
+  - let vehicleid = toShow._id
+  - let vehicle_type = toShow.vehicle_type
+  - let vehicle_color = toShow.vehicle_color
+  - let vehicle_price = toShow.vehicle_price
+  div.row(class='mb-2')
+    div.mr-1 ID is
+    div #{vehicleid}
+  - let actionid = "/resource/vehicle/" + vehicleid
+  form(id='vehicleForm', action= actionid, method="PUT")
+    div.form-group
+      label.vehicleAttr(for='vehicle_type') vehicle_type
+      input#vehicle_type(type='text', name='vehicle_type', value= vehicle_type )
+    div.form-group
+      label.vehicleAttr(for='vehicle_color')  vehicle_color
+      input#vehicle_color(type='text', name='vehicle_color', value= vehicle_color  )
+    div.form-group
+      label.vehicleAttr(for='vehicle_price') vehicle_price
+      input#vehicle_price(type='number', name='vehicle_price',step='any', value= vehicle_price )
+    input(type="submit")
+  script.
+    document.forms['vehicleForm'].addEventListener('submit', (event) => {
+      event.preventDefault();
+      // TODO do something here to show user that form is being submitted
+      fetch(event.target.action, {
+        method: 'PUT',
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+      }).then((resp) => {
+        if(resp.ok){
+            alert ("vehicle Updated Successfully")
+            document.getElementById('vehicleForm').reset()
+        }
+        else {
+            alert (" File to Update vehicle")
+        }
+      }).then((body) => {
+        console.log(body)
+        // TODO handle body
+      }).catch((error) => {
+        // TODO handle error
+        alert("Update failed " + error )
+      });
+    });
