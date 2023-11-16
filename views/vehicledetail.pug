@@ -1,20 +1,25 @@
 extends layout
+
 block content
-  h1= title
-  - let vehicleid = toShow._id
-  - let vehicle_type = toShow.vehicle_type
-  - let vehicle_color = toShow.vehicle_color
-  - let vehicle_price  = toShow.vehicle_price
-    div
-      div.row
-        div(class='vehicleAttr mr-3') vehicle ID:
-        div #{vehicleid}
-      div.row
-        div(class='vehicleAttr mr-3') vehicle_type:
-        div #{vehicle_type}
-      div.row
-        div(class='vehicleAttr mr-3') vehicle_color:
-        div #{vehicle_color}
-      div.row
-        div(class='vehicleAttr mr-3') vehicle_price:
-        div #{vehicle_price}
+  h1.text-center= title
+  if (toShow == null)
+    h2 No instance to delete
+  else
+    // Use a card layout for better styling and centering
+    .card.mx-auto.mt-5
+      .card-body.text-center
+        div.row
+          div(class='vehicleAttr') Vehicle ID:
+          div #{toShow._id}
+        div.row
+          div(class='vehicleAttr') Vehicle Type:
+          div #{toShow.vehicle_type}
+        div.row
+          div(class='vehicleAttr') Vehicle Color:
+          div #{toShow.vehicle_color}
+        div.row
+          div(class='vehicleAttr') Vehicle Price:
+          div #{toShow.vehicle_price}
+      .row.mt-3
+        .col.text-center
+          a.btn.btn-primary(href='/vehicle') Back to Vehicle List

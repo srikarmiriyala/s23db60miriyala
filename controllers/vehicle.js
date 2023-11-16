@@ -135,3 +135,31 @@ exports.vehicle_update_Page = async function(req, res) {
     res.send(`{'error': '${err}'}`);
     }
     };
+// Handle a delete one view with id from query
+exports.vehicle_delete_Page = async function(req, res) {
+    console.log("Delete view for id " + req.query.id)
+    try{
+    result = await vehicle.findById(req.query.id)
+    res.render('vehicledelete', { title: 'Vehicle Delete', toShow:
+    result });
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+    };    
+
+exports.vehicle_detail = async function (req, res) {
+    console.log("detail" + req.params.id);
+    try {
+        const result = await vehicle.findById(req.params.id);
+        if (!result) {
+        // If result is null, handle it as not found
+        res.status(404).send(`{"error": "Document for id ${req.params.id} not found"}`);
+        return;
+        }
+        res.send(result);
+    } catch (error) {
+        res.status(500).send(`{"error": "${error}"}`);
+    }
+};
