@@ -1,6 +1,9 @@
 extends layout
 block content
   h1= title
+  if (toShow == null)
+    h2 No instance to delete
+  else
   - let vehicleid = toShow._id
   - let vehicle_type = toShow.vehicle_type
   - let vehicle_color = toShow.vehicle_color
@@ -33,7 +36,7 @@ block content
             document.getElementById('vehicleForm').reset()
         }
         else {
-            alert (" File to Update vehicle")
+            alert (" Failed to Update vehicle")
         }
       }).then((body) => {
         console.log(body)
