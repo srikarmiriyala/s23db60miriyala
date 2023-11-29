@@ -73,36 +73,36 @@ db.once("open", function () {
   console.log("Connection to DB succeeded")
 });
 
-async function recreateDB(){
+async function recreateDB() {
   // Delete everything
   //await Vechile.deleteMany();
   await vehicle.deleteMany({});
-  let instance1 = new 
-  vehicle({vehicle_type:"commercial",vehicle_color:"red",vehicle_price:35000});
+  let instance1 = new
+    vehicle({ vehicle_type: "commercial", vehicle_color: "red", vehicle_price: 35000 });
   await instance1.save();
   //instance1.save( function(err,doc) {
   //if(err) return console.error(err);
   console.log("First object saved")
   //});
- 
-  let instance2 = new 
-  vehicle({vehicle_type:"public",vehicle_color:"grey",vehicle_price:55000});
+
+  let instance2 = new
+    vehicle({ vehicle_type: "public", vehicle_color: "grey", vehicle_price: 55000 });
   await instance2.save();
   //instance1.save( function(err,doc) {
   //if(err) return console.error(err);
   console.log("second object saved")
   //});
- 
-  let instance3 = new 
-  vehicle({vehicle_type:"personal",vehicle_color:"blue",vehicle_price:15000});
+
+  let instance3 = new
+    vehicle({ vehicle_type: "personal", vehicle_color: "blue", vehicle_price: 15000 });
   await instance3.save();
   //instance1.save( function(err,doc) {
   //if(err) return console.error(err);
   console.log("Third object saved")
   //});
- }
- let reseed = true;
- if (reseed) { recreateDB();}
+}
+let reseed = true;
+if (reseed) { recreateDB(); }
 
 var Account = require('./models/account');
 passport.use(new LocalStrategy(Account.authenticate()));
